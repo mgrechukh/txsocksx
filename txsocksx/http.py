@@ -13,6 +13,8 @@ from twisted.python.versions import Version
 from twisted.web.client import Agent, SchemeNotSupported
 
 from txsocksx.client import SOCKS4ClientEndpoint, SOCKS5ClientEndpoint
+from txsocksx.client_http import HTTPConnectClientEndpoint
+
 from txsocksx.tls import TLSWrapClientEndpoint
 
 
@@ -110,3 +112,16 @@ class SOCKS5Agent(_SOCKSAgent):
     """
 
     endpointFactory = SOCKS5ClientEndpoint
+
+class HTTPConnectAgent(_SOCKSAgent):
+    """An `Agent`__ which connects over SOCKS4.
+
+    See |SOCKS5Agent| for details.
+
+    __ http://twistedmatrix.com/documents/current/api/twisted.web.client.Agent.html
+    .. |SOCKS5Agent| replace:: ``SOCKS5Agent``
+
+    """
+
+    endpointFactory = HTTPConnectClientEndpoint
+
